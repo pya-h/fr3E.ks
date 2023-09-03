@@ -12,7 +12,7 @@ export default class io {
 
     ask = (question = "") => this.cache = this.prompt(`> ${question}`);
 
-    tell = (text: string) => { console.log(chalk.green(text !== undefined ? text : this.cache)); }
+    echo = (text: string) => { console.log(chalk.green(text !== undefined ? text : this.cache)); }
         // recall = () => { console.log(this.cache); }
 
     siktir = () => {

@@ -1,12 +1,12 @@
-import Line from './line';
+import Expression from './expression';
 
 export default
 class Block {
-    lines: Line[];
+    statements: Expression[];
 
     constructor() {
-        this.lines = []; // line's block
+        this.statements = []; // Expression's block
     }
 
-    next = (line: Line) => { this.lines.push(line) };
+    next = (Expression: Expression) => { this.statements.push(Expression) };
 }

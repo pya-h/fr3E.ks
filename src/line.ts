@@ -1,3 +1,5 @@
+import Expression from './expression';
+
 export default
 class Line {
     code: string;
@@ -8,7 +10,7 @@ class Line {
         this.block = [];
     }
 
-    extract = () => this.code.split(/ /).filter((el) => el);
+    extract = () => new Expression(this.code.split(/ /).filter((el) => el));
 
     // decipher = () => {
     //     const words = this.code.split(/ /)
