@@ -8,6 +8,8 @@ export default class Memento {
     samples: { [key: string]: any };
     $: io;
 
+    // THINK:
+    // Define each type as a class?
     constructor($io: io) {
         this.fields = {};
         this.whatevers = {}; // same as objects

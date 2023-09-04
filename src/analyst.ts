@@ -25,44 +25,47 @@ export default class Analyst {
         const { memento } = this;
         let values: any[] = [];
         const { words } = expression;
+        // start processing words in expression
         for (let pos = 0; pos < words.length; pos++) {
             let i = pos + 1;
             const { type, value } = this.memento.recognize(words[pos]);
             if (!isNaN(value)) {
                 let r = value;
-                for (; i < words.length; i++) {
-                    if (
-                        words[i] === "+" ||
-                        words[i] === "-" ||
-                        words[i] === "*" ||
-                        words[i] === "/"
-                    )
-                        continue;
-                    const { type, value } = memento.recognize(words[i]);
+                // calculate any math expression before reaching next term
+                for (; i < words.length && Keys.isOperator(words[i]); i++) {
+                    const { type, value } = memento.recognize(words[i + 1]);
                     if (!isNaN(value)) {
                         // means words[0] is numeric
-                        // every time starts calculations at i and goes on to end of math operations at j
-                        // then final result will replace the words array item from i to j
-                        switch (words[i - 1]) {
-                            case "+":
+                        // every time starts calculations at pos and goes on to end of math operations at i
+                        switch (words[i]) {
+                            case Keys.Operators.Add:
                                 r += value;
                                 break;
-                            case "-":
+                            case Keys.Operators.Substract:
                                 r -= value;
                                 break;
-                            case "*":
+                            case Keys.Operators.Multiply:
                                 r *= value;
                                 break;
-                            case "/":
+                            case Keys.Operators.Devide:
                                 r /= value;
                                 break;
-                            default:
-                                // ERROR!!!!
+                            case Keys.Operators.Raise:
+                                r **= value;
                                 break;
+                            case Keys.Operators.Root:
+                                // its better to handle this one outside
+                                // so that it can handle other roots, and cascade rooting as well
+                                r *= (value ** 0.5);
+                                break;
+                            default:
+                                throw new Error("where the fuck did you learn math fucker?")
                         }
+                        i++;
                     } else break;
                 }
-                values.push(r);
+                values.push(r); // the line may have seperated array items, so this algo calculates each expression
+                // and return all at once
             }
             pos = i - 1;
             // now expression.words is ready to be defined as scalar or array or sth
