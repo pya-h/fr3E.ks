@@ -14,10 +14,14 @@ export default class Analyst {
         this.memento = undefined;
     }
 
-    processArray = (arr: string[], start = 0, end = arr.length - 1) => {
+    textify = (exp: Expression, start = 0, end = exp.words.length - 1) => {
         let s = "";
-        for (let i = start; i <= end; i++)
-            s += this.memento.recognize(arr[i]).value + " ";
+        for (let i = start; i <= end; i++) {
+            if(exp.words[i] === Keys.ExactWord && i < end)
+                s += exp.words[++i] + " ";
+            else
+                s += this.memento.recognize(exp.words[i]).value + " ";
+        }
         return s;
     };
 
@@ -66,6 +70,11 @@ export default class Analyst {
                 }
                 values.push(r); // the line may have seperated array items, so this algo calculates each expression
                 // and return all at once
+            } else if(value === Keys.TextSign){
+                // check if its not method, sample, etc
+                const text = this.textify(expression, pos + 1)
+                values.push(text);
+                break;
             }
             pos = i - 1;
             // now expression.words is ready to be defined as scalar or array or sth
@@ -85,7 +94,7 @@ export default class Analyst {
             switch (expression.words[0]) {
                 case Keys.Write:
                     // for now
-                    let s = this.processArray(expression.words, 1);
+                    const s = this.textify(expression, 1);
                     $.echo(s);
                     break;
                 case Keys.Bye:
@@ -93,8 +102,10 @@ export default class Analyst {
                     return 0;
                 default:
                     // words[1:end] will be sent to another method to be calculated and processed
-                    const first: any = expression.words.splice(0, 1)[0];
-                    const next = this.decipher(expression);
+                    const first: any = expression.words[0];
+                    const next = this.decipher(expression.take(1));
+                    // or maybe use the expression itself and start from index 1
+                    // or if it is meant to be this way, then in 'decipher' method, do operations on expression.take result directly (not r)
                     if (isNaN(first)) this.memento.define.field(first, next);
                     else $.echo(first + next);
             }

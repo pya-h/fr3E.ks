@@ -1,8 +1,8 @@
 import Keys from "./keys";
 import io from "./io";
-
+import { Field } from "./protos";
 export default class Memento {
-    fields: { [key: string]: any };
+    fields: { [key: string]: Field };
     whatevers: { [key: string]: any };
     methods: { [key: string]: any };
     samples: { [key: string]: any };
@@ -21,23 +21,25 @@ export default class Memento {
 
     define = {
         field: (key: string, value: any) => {
-            this.fields[key] = isNaN(value) ? value : +value;
+            this.fields[key] = isNaN(value)
+                ? Field.Whatever(value)
+                : Field.Numeric(value);
         },
     };
 
     recognize = (key: any) => {
         if (!isNaN(key)) return { type: "scalar", value: +key };
-        
+
         if (key[0] === Keys.Read) {
             const fieldName = key.slice(1);
             const value = this.$.ask();
-            if (fieldName) this.fields[fieldName] = value;
-
-            return { type: "field", value };
+            if (fieldName) this.fields[fieldName] = Field.Numeric(value);
+            return this.fields[fieldName]; // edit type
         }
-        if (key in this.fields)
-            return { type: "field", value: this.fields[key] };
-        //and this for methods and etc
-        return { type: "None", value: key };
+        // Better to define classes for fields, etc
+        if (key in this.fields) return this.fields[key];
+
+        // and this for methods and etc
+        return Field.Literal(key); // nothing field
     };
 }
