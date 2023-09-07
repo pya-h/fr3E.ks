@@ -1,22 +1,21 @@
 import Keys from "./keys";
-import io from "./io";
+import $ from "./$";
 import { Field } from "./protos";
 export default class Memento {
     fields: { [key: string]: Field };
     whatevers: { [key: string]: any };
     methods: { [key: string]: any };
     samples: { [key: string]: any };
-    $: io;
+
+    static _: Memento = new Memento();
 
     // THINK:
     // Define each type as a class?
-    constructor($io: io) {
+    constructor() {
         this.fields = {};
         this.whatevers = {}; // same as objects
         this.methods = {};
         this.samples = {}; // classes [meanings?]
-
-        this.$ = $io;
     }
 
     define = {
@@ -32,7 +31,7 @@ export default class Memento {
 
         if (key[0] === Keys.Read) {
             const fieldName = key.slice(1);
-            const value = this.$.ask();
+            const value = $.ask();
             if (fieldName) this.fields[fieldName] = Field.Numeric(value);
             return this.fields[fieldName]; // edit type
         }

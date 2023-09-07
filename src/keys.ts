@@ -11,6 +11,8 @@ const Keys = {
     isOperator: (key: string) => Object.values(Keys.Operators).includes(key),
     Operators,
     TextSign: ":",
+    LineAt: '</>',
+    RunScript: '<!>', 
     Bye: "<3",
     Write: "#",
     Read: "?", // ?x ?y
