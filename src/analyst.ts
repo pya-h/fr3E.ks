@@ -14,8 +14,7 @@ export default class Analyst {
     run = (script: string = '') => {
         // when running script you can save results on console on a file too > t.txt
         while (true) {
-            const newline: Line = new Line($.ask());
-            let expression = newline.extract();
+            let expression = Line.extract($.ask());
             
             this.mainblock.next(expression);
         }
