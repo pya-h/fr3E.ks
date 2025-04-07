@@ -1,0 +1,8 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (freeky.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  LineByLine.cpp
+D:\fr3E.k!\frE3.c!\freeky\String.h(54,40): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\fr3E.k!\frE3.c!\freeky\Expression.h(32,49): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\fr3E.k!\frE3.c!\freeky\Expression.h(33,45): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\fr3E.k!\frE3.c!\freeky\Expression.h(28,22): warning C4267: 'return': conversion from 'size_t' to 'long', possible loss of data
+D:\fr3E.k!\frE3.c!\freeky\Scalar.h(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  freeky.vcxproj -> D:\fr3E.k!\frE3.c!\x64\Debug\frE3.c!.exe

@@ -1,0 +1,19 @@
+﻿  LineByLine.cpp
+D:\pya\freeky\freeky\String.h(21,39): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.h(23,42): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.h(25,37): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.h(27,42): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.h(29,42): warning C4227: anachronism used: qualifiers on reference are ignored
+  String.cpp
+D:\pya\freeky\freeky\String.h(21,39): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.h(23,42): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.h(25,37): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.h(27,42): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.h(29,42): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.cpp(34,46): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.cpp(39,49): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.cpp(44,44): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.cpp(49,49): warning C4227: anachronism used: qualifiers on reference are ignored
+D:\pya\freeky\freeky\String.cpp(54,49): warning C4227: anachronism used: qualifiers on reference are ignored
+  Generating Code...
+  freeky.vcxproj -> D:\pya\freeky\Debug\freeky.exe
